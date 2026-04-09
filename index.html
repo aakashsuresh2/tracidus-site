@@ -1047,12 +1047,20 @@
             // Ensure scanTextDetailed can be async or sync (works in both cases)
             let out;
             try {
-                out = await scanTextDetailed(text);
+                const res = await fetch("https://tracidus.onrender.com/analyze", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ text })
+                });
+
+                out = await res.json();
+
             } catch (e) {
-                console.error('scanTextDetailed failed:', e);
-                // Fallback: try calling sync version if present
-                try { out = scanTextDetailed(text); } catch (e2) { out = null; }
-            }
+                console.error('Backend API failed:', e);
+                out = null;
+        }
             if (!out) {
                 console.warn('No scan result produced. Aborting UI update.');
                 return;
