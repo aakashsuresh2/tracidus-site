@@ -620,7 +620,7 @@
             }
             
             const links = extractLinks(s);
-            const linkAnalysis = await analyzeLinks(links);
+            const linkAnalysis = analyzeLinks(links);
 
             const axes = ['trust','reciprocity','authority','consensus','intimidation','deception','urgency','scarcity'];
             const axisValues = axes.map(a => hitsByCat[a]||0);
@@ -1038,11 +1038,52 @@
         
         // ====== App Logic (fixed runScan) ======
         window.runScan = async function () {
-            const text = document.getElementById('input').value || '';
-            if (!text.trim()){
-                alert('Please paste a message to scan.');
-                return;
-            }
+    const text = document.getElementById('input').value || '';
+
+    if (!text.trim()){
+        alert('Please paste a message to scan.');
+        return;
+    }
+
+    let out;
+
+    try {
+        const res = await fetch("https://tracidus.onrender.com/analyze", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ text })
+        });
+
+        if (!res.ok) throw new Error("Server error");
+
+        out = await res.json();
+
+    } catch (e) {
+        console.warn("Backend failed → using local");
+
+        out = await scanTextDetailed(text);
+    }
+
+    const arr = LABELS.map(l => out.scaled?.[l.toLowerCase()] || 0);
+
+    radarChart.data.datasets[0].data = arr;
+    radarChart.update();
+
+    radarHero.data.datasets[0].data = arr.map(v=>Math.max(8, v*0.9));
+    radarHero.update();
+
+    setRiskUI(out.riskScore || 0);
+
+    document.getElementById('summary').textContent = out.summary || "No result";
+
+    renderExplain(out.matchesByCat || {});
+    renderLinkAnalysis(out.linkAnalysis || []);
+    document.getElementById('badges').textContent = awardBadges(out.hitsByCat || {});
+
+    animateHighlight(text, out.matchesByCat || {});
+};
 
             // Ensure scanTextDetailed can be async or sync (works in both cases)
             let out;
