@@ -1037,7 +1037,7 @@
         });
         
         // ====== App Logic (fixed runScan) ======
-        async function runScan(){
+        window.runScan = async function () {
             const text = document.getElementById('input').value || '';
             if (!text.trim()){
                 alert('Please paste a message to scan.');
