@@ -1047,7 +1047,18 @@ return;
 // Ensure scanTextDetailed can be async or sync (works in both cases)
 let out;
 try {
-out = await scanTextDetailed(text);
+const response = await fetch('https://YOUR-BACKEND-URL.onrender.com/api/analyze', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ text })
+});
+
+const out = await response.json();
+
+// Fix missing field (important)
+out.linkAnalysis = out.linkAnalysis || [];
 } catch (e) {
 console.error('scanTextDetailed failed:', e);
 // Fallback: try calling sync version if present
