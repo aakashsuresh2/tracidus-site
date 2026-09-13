@@ -1102,7 +1102,7 @@ header .grid > div {
 
 
 <style>
-.context-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.context-card{border:1px solid rgba(0,234,255,.12);background:rgba(3,8,16,.58);border-radius:14px;padding:14px}.context-label{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(190,240,255,.42)}.context-value{margin-top:5px;font-size:.84rem;line-height:1.6;color:#dffcff}.context-list{margin-top:8px;display:grid;gap:8px}.context-row{border-left:2px solid rgba(0,234,255,.18);padding-left:10px;font-size:.78rem;line-height:1.55;color:rgba(220,248,252,.78)}.engine-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(0,234,255,.16);border-radius:999px;padding:4px 8px;font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.engine-dot{width:6px;height:6px;border-radius:50%;background:#00eaff;box-shadow:0 0 10px #00eaff}.engine-badge.standby .engine-dot{background:#ffc85a;box-shadow:0 0 10px rgba(255,200,90,.45)}.engine-badge.complete .engine-dot{background:#8affc1;box-shadow:0 0 10px rgba(138,255,193,.45)}.engine-badge.error .engine-dot{background:#ff3b30;box-shadow:0 0 10px rgba(255,59,48,.45)}.evidence-level{display:inline-flex;padding:3px 7px;border-radius:999px;border:1px solid rgba(0,234,255,.15);font-size:.62rem;font-weight:800}.qwen-note{font-size:.7rem;line-height:1.6;color:rgba(190,240,255,.48)}@media(max-width:700px){.context-grid{grid-template-columns:1fr}}
+.context-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.context-card{border:1px solid rgba(0,234,255,.12);background:rgba(3,8,16,.58);border-radius:14px;padding:14px}.context-label{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(190,240,255,.42)}.context-value{margin-top:5px;font-size:.84rem;line-height:1.6;color:#dffcff}.context-list{margin-top:8px;display:grid;gap:8px}.context-row{border-left:2px solid rgba(0,234,255,.18);padding-left:10px;font-size:.78rem;line-height:1.55;color:rgba(220,248,252,.78)}.engine-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(0,234,255,.16);border-radius:999px;padding:4px 8px;font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.engine-dot{width:6px;height:6px;border-radius:50%;background:#00eaff;box-shadow:0 0 10px #00eaff}.engine-badge.standby .engine-dot{background:#ffc85a;box-shadow:0 0 10px rgba(255,200,90,.45)}.engine-badge.complete .engine-dot{background:#8affc1;box-shadow:0 0 10px rgba(138,255,193,.45)}.engine-badge.error .engine-dot{background:#ff3b30;box-shadow:0 0 10px rgba(255,59,48,.45)}.evidence-level{display:inline-flex;padding:3px 7px;border-radius:999px;border:1px solid rgba(0,234,255,.15);font-size:.62rem;font-weight:800}.phi-note{font-size:.7rem;line-height:1.6;color:rgba(190,240,255,.48)}@media(max-width:700px){.context-grid{grid-template-columns:1fr}}
 </style>
 
 <style>
@@ -1553,10 +1553,27 @@ TRACIDUS <span class="text-cyan-300/80">.mapper</span>
   </div>
 </section>
 <section id="context-intelligence" class="bg-cyberDeep/70 border border-cyan-400/30 rounded-2xl p-6">
-<div class="flex flex-col md:flex-row md:items-start md:justify-between gap-3"><div><h3 class="font-display text-xl font-extrabold animate-glow">Context Intelligence</h3><p class="text-cyberBlue/70 text-sm mt-1">Qwen3-4B context layer — evidence interpretation only. It cannot override deterministic results.</p></div><span id="contextEngineStatus" class="engine-badge standby"><span class="engine-dot"></span>STANDBY</span></div>
-<div class="mt-4 context-grid"><div class="context-card"><div class="context-label">Context</div><div id="ctxSituation" class="context-value">Not analyzed.</div></div><div class="context-card"><div class="context-label">Requested action</div><div id="ctxAction" class="context-value">Not analyzed.</div></div><div class="context-card"><div class="context-label">Psychological mechanisms</div><div id="ctxMechanisms" class="context-value">No contextual interpretation yet.</div></div><div class="context-card"><div class="context-label">Alternative explanation</div><div id="ctxAlternative" class="context-value">Not analyzed.</div></div></div>
-<div class="mt-4"><div class="context-label">Evidence-backed findings</div><div id="ctxFindings" class="context-list"><div class="context-row">Qwen3-4B is intentionally disabled for Phase 1. The deterministic pipeline remains independent.</div></div></div>
-<div class="mt-4 rounded-xl border border-cyan-400/10 bg-cyberDeep/40 p-3 qwen-note"><strong>Architecture:</strong> RAW ARTIFACT → structured context → Qwen interpretation → deterministic correlation. LLM output is advisory analytical evidence, never mathematical or classification authority.</div></section>
+  <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
+    <div>
+      <h3 class="font-display text-xl font-extrabold animate-glow">Context Intelligence</h3>
+      <p class="text-cyberBlue/70 text-sm mt-1">Phi-4-mini context layer — contextual interpretation only. It cannot override deterministic TRACIDUS results.</p>
+    </div>
+    <span id="contextEngineStatus" class="engine-badge standby"><span class="engine-dot"></span>STANDBY</span>
+  </div>
+  <div class="mt-4 context-grid">
+    <div class="context-card"><div class="context-label">Contextual Verdict</div><div id="ctxVerdict" class="context-value">Not analyzed.</div></div>
+    <div class="context-card"><div class="context-label">Threat Type</div><div id="ctxThreatType" class="context-value">Not analyzed.</div></div>
+    <div class="context-card"><div class="context-label">Likely Intent</div><div id="ctxLikelyIntent" class="context-value">Not analyzed.</div></div>
+    <div class="context-card"><div class="context-label">Recommended Action</div><div id="ctxRecommendedAction" class="context-value">Not analyzed.</div></div>
+  </div>
+  <div class="mt-4">
+    <div class="context-label">Key Findings</div>
+    <div id="ctxFindings" class="context-list">
+      <div class="context-row">Contextual interpretation will appear here after the deterministic evidence is complete.</div>
+    </div>
+  </div>
+  <div class="mt-4 rounded-xl border border-cyan-400/10 bg-cyberDeep/40 p-3 phi-note"><strong>Architecture:</strong> TRACIDUS deterministic analysis → completed evidence → Phi-4-mini contextual interpretation. TRACIDUS remains authoritative for threat level, scores, technical intelligence, psychological analysis, and correlation.</div>
+</section>
 
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 <section class="bg-cyberDeep/70 border border-cyan-400/30 rounded-2xl p-6">
@@ -1641,7 +1658,7 @@ Click a node to see its full explanation and outcome.
 <summary class="cursor-pointer list-none flex items-center justify-between font-semibold">Does this send data anywhere?
 <span class="transition group-open:rotate-180">▾</span>
 </summary>
-<p class="mt-2 text-cyberBlue/80">TRACIDUS keeps the deterministic presentation layer in the browser. Extracted URLs may be sent to the TRACIDUS backend for technical intelligence. The Qwen3-4B context engine is designed to run behind the backend so model infrastructure and credentials are never exposed in the browser.</p>
+<p class="mt-2 text-cyberBlue/80">TRACIDUS keeps the deterministic presentation layer in the browser. Extracted URLs may be sent to the TRACIDUS backend for technical intelligence. The Phi-4-mini context engine is designed to run behind the backend so model infrastructure and credentials are never exposed in the browser.</p>
 </details>
 <details class="group rounded-2xl border border-cyan-400/20 p-4 bg-cyberDeep/60">
 <summary class="cursor-pointer list-none flex items-center justify-between font-semibold">Can I export results?
@@ -1653,7 +1670,7 @@ Click a node to see its full explanation and outcome.
 <summary class="cursor-pointer list-none flex items-center justify-between font-semibold">How is link reputation determined?
 <span class="transition group-open:rotate-180">▾</span>
 </summary>
-<p class="mt-2 text-cyberBlue/80">TRACIDUS separates artifact analysis from technical enrichment. Technical intelligence is retrieved through the backend. The Qwen3-4B context layer is a separate interpretation layer and does not determine technical maliciousness.</p>
+<p class="mt-2 text-cyberBlue/80">TRACIDUS separates artifact analysis from technical enrichment. Technical intelligence is retrieved through the backend. The Phi-4-mini context layer is a separate interpretation layer and does not determine technical maliciousness.</p>
 </details>
 </div>
 <p class="text-center text-xs text-cyberBlue/60 mt-8">⚡ Psychological analysis runs in the browser; extracted URLs may be sent to the secure TRACIDUS backend for technical intelligence. ⚡</p>
@@ -2873,8 +2890,258 @@ function resetTechnicalUI(){
 }
 
 // ====== TRACIDUS Analytical Architecture ======
-// Phase 1: deterministic analysis remains independent and authoritative.
-// Phase 2: enable only after the Qwen3-4B backend contract is deployed.\nwindow.TRACIDUS_CONTEXT_ENGINE_ENABLED = Boolean(window.TRACIDUS_CONTEXT_ENGINE_ENABLED || false);\nwindow.TRACIDUS_CONTEXT_ENGINE_URL = String(window.TRACIDUS_CONTEXT_ENGINE_URL || `${TRACIDUS_API_BASE_URL}/api/context/analyze`).replace(/\\/+$/, '');\nfunction setEngineBadge(id,state,label){const el=document.getElementById(id);if(!el)return;el.className=`engine-badge ${state||''}`;el.innerHTML=`<span class="engine-dot"></span>${escapeHtml(label)}`;}\nfunction resetContextUI(){setEngineBadge('contextEngineStatus','standby','STANDBY');const v={ctxSituation:'Not analyzed.',ctxAction:'Not analyzed.',ctxMechanisms:'No contextual interpretation yet.',ctxAlternative:'Not analyzed.',ctxFindings:'<div class="context-row">Qwen3-4B is intentionally disabled for Phase 1. The deterministic pipeline remains independent.</div>'};Object.entries(v).forEach(([id,x])=>{const e=document.getElementById(id);if(e)e.innerHTML=x;});}\nfunction resetAssessmentUI(){ /* Internal assessment remains backend-side; nothing deterministic is exposed in the UI. */ }\nfunction normalizeClassification(value){if(!value)return null;const v=String(value).trim().toUpperCase().replace(/_/g,' ');const a=['MALICIOUS','SUSPICIOUS','HIGH PSYCHOLOGICAL RISK','ELEVATED PSYCHOLOGICAL RISK','NO SIGNIFICANT INDICATORS DETECTED'];return a.includes(v)?v:null;}\nfunction renderDeterministicAssessment(out){ /* Deliberately hidden from the user-facing UI. */ }\nfunction buildContextPayload(text,out){const technical=getTechnicalAggregate(out?.linkAnalysis||[]);return {schema_version:'tracidus-context-v1',artifact:{type:'user_supplied_text',content:text},deterministic:{psychological_indicators:out?.hitsByCat||{},scaled_axes:out?.scaled||{},intensity:Number(out?.tpi??out?.psychologicalIntensity??out?.riskScore??0),classification:normalizeClassification(out?.classification||out?.deterministic?.classification)||null},technical:{aggregate:technical,urls:(out?.linkAnalysis||[]).map(l=>({url:l.url,technicalAvailable:l.technicalAvailable,technical:l.technical,assessment:l.technicalAssessment,evidence:l.technicalEvidence||[]}))},constraints:{llm_may_not_override_classification:true,llm_may_not_override_scores:true,llm_must_distinguish_observation_interpretation_inference:true,llm_must_surface_unknowns:true,llm_must_test_alternative_explanations:true}};}\nfunction renderContextResult(result){const r=result?.context||result?.analysis||result||{};setEngineBadge('contextEngineStatus','complete','QWEN3-4B COMPLETE');document.getElementById('ctxSituation').textContent=r.situation||r.context||'Not established.';document.getElementById('ctxAction').textContent=r.requested_action||r.requestedAction||'Not established.';const m=r.mechanisms||r.psychological_mechanisms||r.behavioral_mechanism||[];document.getElementById('ctxMechanisms').textContent=Array.isArray(m)?(m.length?m.join(' · '):'None established.'):String(m||'None established.');document.getElementById('ctxAlternative').textContent=r.alternative_explanation||r.alternativeExplanation||'No alternative explanation supplied.';const f=r.findings||r.evidence||[];const rows=Array.isArray(f)?f:[f];document.getElementById('ctxFindings').innerHTML=rows.filter(Boolean).slice(0,12).map(x=>{if(typeof x==='string')return `<div class="context-row">${escapeHtml(x)}</div>`;const level=x.epistemic_level||x.level||'UNSPECIFIED';const text=x.statement||x.finding||x.evidence||JSON.stringify(x);return `<div class="context-row"><span class="evidence-level">${escapeHtml(level)}</span> ${escapeHtml(String(text))}</div>`;}).join('')||'<div class="context-row">No contextual findings were returned.</div>';}\nasync function runContextEngine(text,out,token){if(!window.TRACIDUS_CONTEXT_ENGINE_ENABLED){resetContextUI();return null;}setEngineBadge('contextEngineStatus','','QWEN3-4B ANALYZING');const c=new AbortController();const t=setTimeout(()=>c.abort(),30000);try{const r=await fetch(window.TRACIDUS_CONTEXT_ENGINE_URL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(buildContextPayload(text,out)),signal:c.signal});const p=await r.json().catch(()=>null);if(!r.ok)throw new Error(p?.error?.message||`Context engine request failed (${r.status}).`);if(token!==window.__tracidusScanToken)return null;renderContextResult(p);return p;}catch(e){if(token!==window.__tracidusScanToken)return null;console.warn('Qwen context engine unavailable:',e);setEngineBadge('contextEngineStatus','error','QWEN3-4B UNAVAILABLE');document.getElementById('ctxFindings').innerHTML='<div class="context-row">Context analysis unavailable. The deterministic assessment remains authoritative and was not changed.</div>';return {error:{message:e?.message||'Context engine unavailable.'}};}finally{clearTimeout(t);}}\n
+// TRACIDUS Core is authoritative. Phi-4-mini provides contextual explanation only.
+// "TRACIDUS decides. Phi explains."
+window.TRACIDUS_CONTEXT_ENGINE_ENABLED = true;
+window.TRACIDUS_CONTEXT_ENGINE_URL = String(
+  window.TRACIDUS_CONTEXT_ENGINE_URL ||
+  (
+    (location.protocol === 'file:' ||
+     location.hostname === 'localhost' ||
+     location.hostname === '127.0.0.1')
+      ? 'http://localhost:10000/api/context-intelligence'
+      : `${TRACIDUS_API_BASE_URL}/api/context-intelligence`
+  )
+).replace(/\/+$/, '');
+
+function setEngineBadge(id, state, label){
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.className = `engine-badge ${state || ''}`;
+  el.innerHTML = `<span class="engine-dot"></span>${escapeHtml(label)}`;
+}
+
+function resetContextUI(){
+  setEngineBadge('contextEngineStatus','standby','STANDBY');
+  const values = {
+    ctxVerdict: 'Not analyzed.',
+    ctxThreatType: 'Not analyzed.',
+    ctxLikelyIntent: 'Not analyzed.',
+    ctxRecommendedAction: 'Not analyzed.'
+  };
+  Object.entries(values).forEach(([id, value]) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+  });
+  const findings = document.getElementById('ctxFindings');
+  if (findings) findings.innerHTML = '<div class="context-row">Contextual interpretation will appear here after the deterministic evidence is complete.</div>';
+}
+
+function normalizeContextVerdict(value){
+  const v = String(value || '').trim().toUpperCase();
+  return v === 'LEGITIMATE' || v === 'SUSPICIOUS' ? v : null;
+}
+
+/*
+ * Deterministic assessment bridge.
+ *
+ * These functions are intentionally thin wrappers around the existing
+ * TRACIDUS correlation/threat-level renderer.  The previous integration
+ * referenced them but never defined them, which caused runScan() to abort
+ * immediately before runContextEngine() could call Phi-4-mini.
+ */
+function resetAssessmentUI(){
+  const bar = document.getElementById('threatLevelBar');
+  const marker = document.getElementById('threatLevelMarker');
+  const score = document.getElementById('threatLevelScore');
+  const tag = document.getElementById('threatLevelTag');
+  const note = document.getElementById('threatLevelNote');
+
+  if (bar) bar.style.width = '0%';
+  if (marker) marker.style.left = '12.5%';
+  if (score) score.textContent = '—';
+  if (tag) {
+    tag.textContent = 'Awaiting analysis';
+    tag.className = 'trc-level-tag';
+  }
+  if (note) note.textContent = 'Scan a message to see how the available evidence lines up.';
+}
+
+function renderDeterministicAssessment(out){
+  const correlation = out?.correlation || buildCorrelation(out || {});
+  renderThreatLevel(correlation);
+}
+
+function buildContextPayload(text, out){
+  const technical = getTechnicalAggregate(out?.linkAnalysis || []);
+  const correlation = out?.correlation || buildCorrelation(out || {});
+
+  return {
+    artifact: String(text || ''),
+    psychological: {
+      trust: Number(out?.scaled?.trust || 0),
+      reciprocity: Number(out?.scaled?.reciprocity || 0),
+      authority: Number(out?.scaled?.authority || 0),
+      consensus: Number(out?.scaled?.consensus || 0),
+      intimidation: Number(out?.scaled?.intimidation || 0),
+      deception: Number(out?.scaled?.deception || 0),
+      urgency: Number(out?.scaled?.urgency || 0),
+      scarcity: Number(out?.scaled?.scarcity || 0)
+    },
+    technical: {
+      malicious: Number(technical?.malicious || 0),
+      suspicious: Number(technical?.suspicious || 0),
+      harmless: Number(technical?.harmless || 0),
+      undetected: Number(technical?.undetected || 0),
+      evidence: (out?.linkAnalysis || [])
+        .flatMap(link => Array.isArray(link?.technicalEvidence) ? link.technicalEvidence : [])
+        .map(item => {
+          if (typeof item === 'string') return item;
+          try { return JSON.stringify(item); }
+          catch (_) { return String(item); }
+        })
+    },
+    correlation: {
+      threatLevel: String(correlation?.threat || 'Low').toUpperCase(),
+      evidenceAlignment: Math.max(
+        0,
+        Math.min(100, Number(correlation?.alignment || 0))
+      )
+    }
+  };
+}
+
+function buildLegacyContextPayload(text, out){
+  const technical = getTechnicalAggregate(out?.linkAnalysis || []);
+  const correlation = out?.correlation || buildCorrelation(out || {});
+  return {
+    artifact: String(text || ''),
+    psychological: {
+      trust: Number(out?.scaled?.trust || 0),
+      reciprocity: Number(out?.scaled?.reciprocity || 0),
+      authority: Number(out?.scaled?.authority || 0),
+      consensus: Number(out?.scaled?.consensus || 0),
+      intimidation: Number(out?.scaled?.intimidation || 0),
+      deception: Number(out?.scaled?.deception || 0),
+      urgency: Number(out?.scaled?.urgency || 0),
+      scarcity: Number(out?.scaled?.scarcity || 0)
+    },
+    technical: {
+      malicious: Number(technical?.malicious || 0),
+      suspicious: Number(technical?.suspicious || 0),
+      harmless: Number(technical?.harmless || 0),
+      undetected: Number(technical?.undetected || 0),
+      evidence: (out?.linkAnalysis || []).flatMap(link => Array.isArray(link?.technicalEvidence) ? link.technicalEvidence : []).map(item => {
+        if (typeof item === 'string') return item;
+        try { return JSON.stringify(item); } catch (_) { return String(item); }
+      })
+    },
+    correlation: {
+      threatLevel: String(correlation?.threat || 'Low').toUpperCase(),
+      evidenceAlignment: Math.max(0, Math.min(100, Number(correlation?.alignment || 0)))
+    }
+  };
+}
+
+function renderContextResult(result, token){
+  if (token !== window.__tracidusScanToken) return false;
+
+  const r =
+    result?.contextIntelligence ||
+    result?.context ||
+    result?.analysis ||
+    result ||
+    {};
+  const verdict = normalizeContextVerdict(r.contextual_verdict);
+  const threatType = String(r.threat_type || '').trim();
+  const likelyIntent = String(r.likely_intent || '').trim();
+  const recommendedAction = String(r.recommended_action || '').trim();
+  const findings = Array.isArray(r.key_findings) ? r.key_findings : [];
+
+  // Strict frontend validation of the five-field Phi contract.
+  if (!verdict || !threatType || !likelyIntent || !recommendedAction || findings.length !== 3) {
+    throw new Error('Malformed Phi-4-mini response: expected contextual_verdict, threat_type, likely_intent, exactly 3 key_findings, and recommended_action.');
+  }
+
+  document.getElementById('ctxVerdict').textContent = verdict;
+  document.getElementById('ctxThreatType').textContent = threatType;
+  document.getElementById('ctxLikelyIntent').textContent = likelyIntent;
+  document.getElementById('ctxRecommendedAction').textContent = recommendedAction;
+
+  const findingsEl = document.getElementById('ctxFindings');
+  if (findingsEl) {
+    // escapeHtml is used for every Phi-generated value before HTML insertion.
+    findingsEl.innerHTML = findings.map(f =>
+      `<div class="context-row">${escapeHtml(String(f))}</div>`
+    ).join('');
+  }
+
+  setEngineBadge('contextEngineStatus','complete','PHI-4-MINI COMPLETE');
+  return true;
+}
+
+async function runContextEngine(text, out, token){
+  if (!window.TRACIDUS_CONTEXT_ENGINE_ENABLED) return null;
+  if (token !== window.__tracidusScanToken) return null;
+
+  setEngineBadge('contextEngineStatus','','PHI-4-MINI ANALYZING');
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 125000);
+
+  async function request(payload){
+    const response = await fetch(window.TRACIDUS_CONTEXT_ENGINE_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload),
+      signal: controller.signal
+    });
+    const body = await response.json().catch(() => null);
+    return { response, body };
+  }
+
+  try {
+    const response = await fetch(window.TRACIDUS_CONTEXT_ENGINE_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(buildContextPayload(text, out)),
+      signal: controller.signal
+    });
+
+    const payload = await response.json().catch(() => null);
+
+    if (!response.ok) {
+      throw new Error(
+        payload?.error?.message ||
+        `Context intelligence request failed (${response.status}).`
+      );
+    }
+
+    if (token !== window.__tracidusScanToken) return null;
+
+    if (!payload?.success || !payload?.contextIntelligence) {
+      const backendMessage =
+        typeof payload?.error === 'string'
+          ? payload.error
+          : payload?.error?.message;
+
+      throw new Error(
+        backendMessage ||
+        'Context Intelligence backend returned no usable Phi result.'
+      );
+    }
+
+    renderContextResult(payload, token);
+    return payload;
+  } catch (error) {
+    if (token !== window.__tracidusScanToken) return null;
+    console.warn('Phi-4-mini context intelligence unavailable:', error);
+    setEngineBadge('contextEngineStatus','error','PHI-4-MINI UNAVAILABLE');
+    const findings = document.getElementById('ctxFindings');
+    if (findings) {
+      findings.innerHTML = '<div class="context-row">Context intelligence is temporarily unavailable. The deterministic TRACIDUS assessment remains authoritative and was not changed.</div>';
+    }
+    return { error: { message: error?.message || 'Context intelligence unavailable.' } };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 // ====== App Logic ======
 window.__tracidusScanToken = 0;
 
