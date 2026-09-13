@@ -45,10 +45,10 @@ cyberDeep: "#050812",
 cyberAccent: "#0f1a2f",
 cyberGlow: "#35f0ff",
 acid: "#8affc1",
-magenta: "#ff55dd",
+magenta: "#ff3b30",
 linkSafe: "#8affc1",
 linkSuspicious: "#ffc85a",
-linkMalicious: "#ff55dd"
+linkMalicious: "#ff3b30"
 },
 fontFamily: {
 display: ["DM Sans", "ui-sans-serif", "system-ui"],
@@ -176,7 +176,7 @@ mark.neon { background: rgba(0,234,255,0.18); color:#e6fdff; padding:0 .15rem; b
   --trc-muted: rgba(190, 240, 255, .62);
   --trc-cyan: #00eaff;
   --trc-green: #8affc1;
-  --trc-magenta: #ff55dd;
+  --trc-magenta: #ff3b30;
   --trc-radius: 22px;
   --trc-shadow: 0 18px 60px rgba(0, 0, 0, .24);
 }
@@ -187,7 +187,7 @@ body {
   min-height: 100vh;
   background:
     radial-gradient(circle at 12% 8%, rgba(0,234,255,.055), transparent 28%),
-    radial-gradient(circle at 88% 22%, rgba(255,85,221,.035), transparent 24%),
+    radial-gradient(circle at 88% 22%, rgba(255,59,48,.035), transparent 24%),
     var(--trc-bg);
   color: var(--trc-text);
   letter-spacing: .005em;
@@ -302,7 +302,7 @@ header [data-tilt] {
   inset: 10px !important;
   border-color: rgba(0,234,255,.18) !important;
   background:
-    linear-gradient(145deg, rgba(0,234,255,.065), rgba(8,14,27,.78) 55%, rgba(255,85,221,.025)) !important;
+    linear-gradient(145deg, rgba(0,234,255,.065), rgba(8,14,27,.78) 55%, rgba(255,59,48,.025)) !important;
   box-shadow:
     0 30px 100px rgba(0,0,0,.3),
     0 0 50px rgba(0,234,255,.055) !important;
@@ -915,7 +915,7 @@ header .relative.h-\[420px\] {
 
 header [data-tilt] {
   border-color: rgba(0, 234, 255, .14) !important;
-  background: linear-gradient(145deg, rgba(0,234,255,.045), rgba(5,10,20,.82) 60%, rgba(255,85,221,.018)) !important;
+  background: linear-gradient(145deg, rgba(0,234,255,.045), rgba(5,10,20,.82) 60%, rgba(255,59,48,.018)) !important;
   box-shadow: 0 28px 90px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.025) !important;
 }
 
@@ -1102,7 +1102,7 @@ header .grid > div {
 
 
 <style>
-.context-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.context-card{border:1px solid rgba(0,234,255,.12);background:rgba(3,8,16,.58);border-radius:14px;padding:14px}.context-label{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(190,240,255,.42)}.context-value{margin-top:5px;font-size:.84rem;line-height:1.6;color:#dffcff}.context-list{margin-top:8px;display:grid;gap:8px}.context-row{border-left:2px solid rgba(0,234,255,.18);padding-left:10px;font-size:.78rem;line-height:1.55;color:rgba(220,248,252,.78)}.engine-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(0,234,255,.16);border-radius:999px;padding:4px 8px;font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.engine-dot{width:6px;height:6px;border-radius:50%;background:#00eaff;box-shadow:0 0 10px #00eaff}.engine-badge.standby .engine-dot{background:#ffc85a;box-shadow:0 0 10px rgba(255,200,90,.45)}.engine-badge.complete .engine-dot{background:#8affc1;box-shadow:0 0 10px rgba(138,255,193,.45)}.engine-badge.error .engine-dot{background:#ff55dd;box-shadow:0 0 10px rgba(255,85,221,.45)}.evidence-level{display:inline-flex;padding:3px 7px;border-radius:999px;border:1px solid rgba(0,234,255,.15);font-size:.62rem;font-weight:800}.qwen-note{font-size:.7rem;line-height:1.6;color:rgba(190,240,255,.48)}@media(max-width:700px){.context-grid{grid-template-columns:1fr}}
+.context-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.context-card{border:1px solid rgba(0,234,255,.12);background:rgba(3,8,16,.58);border-radius:14px;padding:14px}.context-label{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(190,240,255,.42)}.context-value{margin-top:5px;font-size:.84rem;line-height:1.6;color:#dffcff}.context-list{margin-top:8px;display:grid;gap:8px}.context-row{border-left:2px solid rgba(0,234,255,.18);padding-left:10px;font-size:.78rem;line-height:1.55;color:rgba(220,248,252,.78)}.engine-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(0,234,255,.16);border-radius:999px;padding:4px 8px;font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.engine-dot{width:6px;height:6px;border-radius:50%;background:#00eaff;box-shadow:0 0 10px #00eaff}.engine-badge.standby .engine-dot{background:#ffc85a;box-shadow:0 0 10px rgba(255,200,90,.45)}.engine-badge.complete .engine-dot{background:#8affc1;box-shadow:0 0 10px rgba(138,255,193,.45)}.engine-badge.error .engine-dot{background:#ff3b30;box-shadow:0 0 10px rgba(255,59,48,.45)}.evidence-level{display:inline-flex;padding:3px 7px;border-radius:999px;border:1px solid rgba(0,234,255,.15);font-size:.62rem;font-weight:800}.qwen-note{font-size:.7rem;line-height:1.6;color:rgba(190,240,255,.48)}@media(max-width:700px){.context-grid{grid-template-columns:1fr}}
 </style>
 
 <style>
@@ -1155,8 +1155,8 @@ header .grid > div {
       rgba(255,200,90,.18) 50%,
       rgba(255,145,85,.18) 50%,
       rgba(255,145,85,.18) 75%,
-      rgba(255,85,221,.22) 75%,
-      rgba(255,85,221,.22) 100%);
+      rgba(255,59,48,.22) 75%,
+      rgba(255,59,48,.22) 100%);
   border: 1px solid rgba(0,234,255,.08);
 }
 
@@ -1164,7 +1164,7 @@ header .grid > div {
   height: 100%;
   width: 0%;
   border-radius: inherit;
-  background: linear-gradient(90deg, #8affc1 0%, #ffc85a 48%, #ff9155 74%, #ff55dd 100%);
+  background: linear-gradient(90deg, #8affc1 0%, #ffc85a 48%, #ff9155 74%, #ff3b30 100%);
   box-shadow: 0 0 16px rgba(0,234,255,.16);
   transition: width .7s cubic-bezier(.22,1,.36,1);
 }
@@ -1214,9 +1214,9 @@ header .grid > div {
   background: rgba(255,145,85,.055);
 }
 .trc-level-critical {
-  color: #ff72df;
-  border-color: rgba(255,85,221,.30);
-  background: rgba(255,85,221,.055);
+  color: #ff6b63;
+  border-color: rgba(255,59,48,.30);
+  background: rgba(255,59,48,.055);
 }
 
 .correlation-metric {
@@ -1304,7 +1304,7 @@ header .grid > div {
 <div id="noise"></div>
 <div class="cursor"></div>
 <div class="cursor-dot"></div>
-<div aria-hidden class="pointer-events-none fixed inset-x-0 -top-24 h-48 blur-3xl" style="background:radial-gradient(60% 80% at 50% 0%, rgba(0,234,255,.25), transparent 60%), radial-gradient(40% 60% at 15% 0%, rgba(138,255,193,.18), transparent 60%), radial-gradient(40% 60% at 85% 0%, rgba(255,85,221,.18), transparent 60%)"></div>
+<div aria-hidden class="pointer-events-none fixed inset-x-0 -top-24 h-48 blur-3xl" style="background:radial-gradient(60% 80% at 50% 0%, rgba(0,234,255,.25), transparent 60%), radial-gradient(40% 60% at 15% 0%, rgba(138,255,193,.18), transparent 60%), radial-gradient(40% 60% at 85% 0%, rgba(255,59,48,.18), transparent 60%)"></div>
 <nav class="fixed top-0 inset-x-0 z-50 backdrop-blur-md border-b border-cyan-400/10 bg-cyberDeep/50">
 <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
 <div class="flex items-center gap-2 font-display font-extrabold tracking-wide text-[15px]">
