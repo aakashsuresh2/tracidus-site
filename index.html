@@ -2967,7 +2967,10 @@ function buildContextPayload(text, out){
   const correlation = out?.correlation || buildCorrelation(out || {});
 
   return {
+    /* Backend contract: artifact is the raw artifact string. */
     artifact: String(text || ''),
+
+    /* Backend contract: flat normalized psychological axes. */
     psychological: {
       trust: Number(out?.scaled?.trust || 0),
       reciprocity: Number(out?.scaled?.reciprocity || 0),
@@ -2978,6 +2981,8 @@ function buildContextPayload(text, out){
       urgency: Number(out?.scaled?.urgency || 0),
       scarcity: Number(out?.scaled?.scarcity || 0)
     },
+
+    /* Backend contract: aggregate technical counts plus evidence strings. */
     technical: {
       malicious: Number(technical?.malicious || 0),
       suspicious: Number(technical?.suspicious || 0),
@@ -2991,44 +2996,14 @@ function buildContextPayload(text, out){
           catch (_) { return String(item); }
         })
     },
+
+    /* Phi receives the deterministic conclusion as evidence, not authority. */
     correlation: {
       threatLevel: String(correlation?.threat || 'Low').toUpperCase(),
       evidenceAlignment: Math.max(
         0,
         Math.min(100, Number(correlation?.alignment || 0))
       )
-    }
-  };
-}
-
-function buildLegacyContextPayload(text, out){
-  const technical = getTechnicalAggregate(out?.linkAnalysis || []);
-  const correlation = out?.correlation || buildCorrelation(out || {});
-  return {
-    artifact: String(text || ''),
-    psychological: {
-      trust: Number(out?.scaled?.trust || 0),
-      reciprocity: Number(out?.scaled?.reciprocity || 0),
-      authority: Number(out?.scaled?.authority || 0),
-      consensus: Number(out?.scaled?.consensus || 0),
-      intimidation: Number(out?.scaled?.intimidation || 0),
-      deception: Number(out?.scaled?.deception || 0),
-      urgency: Number(out?.scaled?.urgency || 0),
-      scarcity: Number(out?.scaled?.scarcity || 0)
-    },
-    technical: {
-      malicious: Number(technical?.malicious || 0),
-      suspicious: Number(technical?.suspicious || 0),
-      harmless: Number(technical?.harmless || 0),
-      undetected: Number(technical?.undetected || 0),
-      evidence: (out?.linkAnalysis || []).flatMap(link => Array.isArray(link?.technicalEvidence) ? link.technicalEvidence : []).map(item => {
-        if (typeof item === 'string') return item;
-        try { return JSON.stringify(item); } catch (_) { return String(item); }
-      })
-    },
-    correlation: {
-      threatLevel: String(correlation?.threat || 'Low').toUpperCase(),
-      evidenceAlignment: Math.max(0, Math.min(100, Number(correlation?.alignment || 0)))
     }
   };
 }
@@ -3076,21 +3051,7 @@ async function runContextEngine(text, out, token){
 
   setEngineBadge('contextEngineStatus','','PHI-4-MINI ANALYZING');
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 125000);
-
-  async function request(payload){
-    const response = await fetch(window.TRACIDUS_CONTEXT_ENGINE_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(payload),
-      signal: controller.signal
-    });
-    const body = await response.json().catch(() => null);
-    return { response, body };
-  }
+  const timeout = setTimeout(() => controller.abort(), 30000);
 
   try {
     const response = await fetch(window.TRACIDUS_CONTEXT_ENGINE_URL, {
@@ -3104,27 +3065,10 @@ async function runContextEngine(text, out, token){
     });
 
     const payload = await response.json().catch(() => null);
-
     if (!response.ok) {
-      throw new Error(
-        payload?.error?.message ||
-        `Context intelligence request failed (${response.status}).`
-      );
+      throw new Error(payload?.error?.message || `Context intelligence request failed (${response.status}).`);
     }
-
     if (token !== window.__tracidusScanToken) return null;
-
-    if (!payload?.success || !payload?.contextIntelligence) {
-      const backendMessage =
-        typeof payload?.error === 'string'
-          ? payload.error
-          : payload?.error?.message;
-
-      throw new Error(
-        backendMessage ||
-        'Context Intelligence backend returned no usable Phi result.'
-      );
-    }
 
     renderContextResult(payload, token);
     return payload;
